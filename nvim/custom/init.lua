@@ -1,0 +1,43 @@
+-- local function map(mode, lhs, rhs, opts)
+--   local options = { noremap = true, silent = true }
+--   if opts then
+--     if opts.desc then
+--       opts.desc = "keymaps.lua: " .. opts.desc
+--     end
+--     options = vim.tbl_extend("force", options, opts)
+--   end
+--   vim.keymap.set(mode, lhs, rhs, options)
+-- end
+--
+-- -- map("n", "k", 'v:count || mode(1)[0:1] == "no" ? "<Up>" : "gj"', { expr = true, silent = false })
+-- -- map("n", ",", 'v:count || mode(1)[0:1] == "no" ? "<Down>" : "gk"', { expr = true, silet = false })
+-- map("n", "l", "<Right>")
+-- map("n", "k", "<Down>")
+-- map("n", "i", "<Up>")
+-- map("n", "j", "<Left>")
+--
+-- map("i", "C-k", "<Down>")
+-- map("i", "C-i", "<Up>")
+-- map("i", "C-j", "<Left>")
+-- map("i", "c-l", "<Right>")
+vim.opt.relativenumber = true
+
+-- local function escape(str)
+--   -- You need to escape these characters to work correctly
+--   local escape_chars = [[;,."|\]]
+--   return vim.fn.escape(str, escape_chars)
+-- end
+
+-- Recommended uto use lua template string
+-- local en = [[p[]j]]
+-- local sv = [[på"j]]
+-- local en_shift = [[{}]]
+-- local sv_shift = [[Å^]]
+
+-- vim.opt.langmap = vim.fn.join({
+--   -- | `to` should be first     | `from` should be second
+--   escape(sv_shift)
+--     .. ";"
+--     .. escape(en_shift),
+--   escape(sv) .. ";" .. escape(en),
+-- }, ",")
