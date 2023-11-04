@@ -1,2 +1,2 @@
 #/bin/zsh
-ln -s ./custom ~/.config/nvim/lua/custom
+ln -s $PWD/custom ~/.config/nvim/lua/custom
