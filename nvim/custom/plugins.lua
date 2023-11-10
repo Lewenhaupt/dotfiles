@@ -31,7 +31,7 @@ local plugins = {
 					-- Define your formatters
 					formatters_by_ft = {
 						lua = { "stylua" },
-						python = { "isort", "black" },
+						python = { "isort", "blue" },
 						javascript = { { "prettierd", "prettier" } },
 						javascriptreact = { { "prettierd", "prettier" } },
 						typescript = { { "prettierd", "prettier" } },
@@ -698,6 +698,17 @@ local plugins = {
 		cmd = "IncRename",
 		config = true,
 		keys = { { mode = "n", "<leader>rN", ":IncRename " } },
+	},
+	{
+		"olimorris/persisted.nvim",
+		lazy = false,
+		priority = 1,
+		config = function()
+			require("persisted").setup({
+				use_git_branch = true,
+				autoload = true,
+			})
+		end,
 	},
 }
 
