@@ -1,8 +1,6 @@
 #/bin/zsh
 nix-env -iA \
-        nixpkgs.neovim \
         nixpkgs.git \
-        nixpkgs.tmux \
         nixpkgs.stow \
         nixpkgs.fzf \
         nixpkgs.ripgrep \

@@ -306,11 +306,11 @@ local plugins = {
 			-- fancy UI for the debugger
 			{
 				"rcarriga/nvim-dap-ui",
-      -- stylua: ignore
-      keys = {
-        { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-        { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-      },
+        -- stylua: ignore
+        keys = {
+          { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
+          { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
+        },
 				opts = {},
 				config = function(_, opts)
 					-- setup dap config by VsCode launch.json file
@@ -398,22 +398,92 @@ local plugins = {
 
     -- stylua: ignore
     keys = {
-      { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition" },
-      { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
-      { "<leader>dc", function() require("dap").continue() end, desc = "Continue" },
-      { "<leader>dC", function() require("dap").run_to_cursor() end, desc = "Run to Cursor" },
-      { "<leader>dg", function() require("dap").goto_() end, desc = "Go to line (no execute)" },
-      { "<leader>di", function() require("dap").step_into() end, desc = "Step Into" },
+      {
+        "<leader>dB",
+        function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+        desc =
+        "Breakpoint Condition"
+      },
+      {
+        "<leader>db",
+        function() require("dap").toggle_breakpoint() end,
+        desc =
+        "Toggle Breakpoint"
+      },
+      {
+        "<leader>dc",
+        function() require("dap").continue() end,
+        desc =
+        "Continue"
+      },
+      {
+        "<leader>dC",
+        function() require("dap").run_to_cursor() end,
+        desc =
+        "Run to Cursor"
+      },
+      {
+        "<leader>dg",
+        function() require("dap").goto_() end,
+        desc =
+        "Go to line (no execute)"
+      },
+      {
+        "<leader>di",
+        function() require("dap").step_into() end,
+        desc =
+        "Step Into"
+      },
       { "<leader>dj", function() require("dap").down() end, desc = "Down" },
-      { "<leader>dk", function() require("dap").up() end, desc = "Up" },
-      { "<leader>dl", function() require("dap").run_last() end, desc = "Run Last" },
-      { "<leader>do", function() require("dap").step_out() end, desc = "Step Out" },
-      { "<leader>dO", function() require("dap").step_over() end, desc = "Step Over" },
-      { "<leader>dp", function() require("dap").pause() end, desc = "Pause" },
-      { "<leader>dr", function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
-      { "<leader>ds", function() require("dap").session() end, desc = "Session" },
-      { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
-      { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
+      { "<leader>dk", function() require("dap").up() end,   desc = "Up" },
+      {
+        "<leader>dl",
+        function() require("dap").run_last() end,
+        desc =
+        "Run Last"
+      },
+      {
+        "<leader>do",
+        function() require("dap").step_out() end,
+        desc =
+        "Step Out"
+      },
+      {
+        "<leader>dO",
+        function() require("dap").step_over() end,
+        desc =
+        "Step Over"
+      },
+      {
+        "<leader>dp",
+        function() require("dap").pause() end,
+        desc =
+        "Pause"
+      },
+      {
+        "<leader>dr",
+        function() require("dap").repl.toggle() end,
+        desc =
+        "Toggle REPL"
+      },
+      {
+        "<leader>ds",
+        function() require("dap").session() end,
+        desc =
+        "Session"
+      },
+      {
+        "<leader>dt",
+        function() require("dap").terminate() end,
+        desc =
+        "Terminate"
+      },
+      {
+        "<leader>dw",
+        function() require("dap.ui.widgets").hover() end,
+        desc =
+        "Widgets"
+      },
     },
 
 		config = function()
@@ -440,8 +510,8 @@ local plugins = {
 		"rcarriga/nvim-dap-ui",
     -- stylua: ignore
     keys = {
-      { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-      { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
+      { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
+      { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
     },
 		opts = {},
 		config = function(_, opts)
@@ -709,6 +779,74 @@ local plugins = {
 				autoload = true,
 			})
 		end,
+	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = { "kevinhwang91/promise-async" },
+		lazy = false,
+		opts = {
+			filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+			provider_selector = function(bufnr, filetype, buftype)
+				return { "treesitter", "indent" }
+			end,
+		},
+		config = function(_, opts)
+			-- vim.api.nvim_create_autocmd("FileType", {
+			-- 	group = vim.api.nvim_create_augroup("local_detach_ufo", { clear = true }),
+			-- 	pattern = opts.filetype_exclude,
+			-- 	callback = function()
+			-- 		require("ufo").detach()
+			-- 	end,
+			-- })
+
+			-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+			-- capabilities.textDocument.foldingRange = {
+			-- 	dynamicRegistration = false,
+			-- 	lineFoldingOnly = true,
+			-- }
+			-- local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+			-- for _, ls in ipairs(language_servers) do
+			-- 	require("lspconfig")[ls].setup({
+			-- 		capabilities = capabilities,
+			-- 		-- you can add other fields for setting up lsp server in this table
+			-- 	})
+			-- end
+			--
+			vim.opt.foldcolumn = "1" -- '0' is not bad
+			vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+			vim.opt.foldlevelstart = 99
+			vim.opt.foldenable = true
+
+			require("ufo").setup(opts)
+		end,
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		event = "BufEnter",
+		opts = {},
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		cmd = { "LspInstall", "LspUninstall" },
+		config = function()
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"typescript-language-server",
+					"eslint",
+					"html",
+					"cssls",
+					"pylsp",
+				},
+			})
+
+			-- automatic_installation is handled by lsp-manager
+			local settings = require("mason-lspconfig.settings")
+			settings.current.automatic_installation = false
+		end,
+		lazy = true,
+		event = "User FileOpened",
+		dependencies = "mason.nvim",
 	},
 }
 
