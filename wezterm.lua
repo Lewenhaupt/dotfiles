@@ -18,6 +18,15 @@ local direction_keys = {
 	l = "Right",
 }
 
+local handle = io.popen('uname -a')
+local output = handle:read('*a')
+local uname = output:gsub('[\n\r]', ' ')
+
+local os_name = "unix"
+if string.find(uname, "Darwin") then
+	os_name = "macos"
+end
+
 local function split_nav(resize_or_move, key)
 	return {
 		key = key,
@@ -93,5 +102,12 @@ workspace_switcher.apply_to_config(config, "b", "ALT", function(label)
 		{ Text = "󱂬: " .. label },
 	})
 end)
+
+if os_name == "macos" then
+	config.use_ime = true
+	config.use_dead_keys = true
+	config.send_composed_key_when_left_alt_is_pressed = true
+        config.send_composed_key_when_right_alt_is_pressed = true
+end
 
 return config
